@@ -18,16 +18,16 @@ cosmwasm-std = "1.1"
 
 cosmwasm-schema = "1.1"
 cw-multi-test = "0.15"
-astroport = { git = "https://github.com/astroport-fi/astroport-core.git"}
+paloma = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
 
 astroport-escrow-fee-distributor = { path = "../../contracts/escrow_fee_distributor" }
 astroport-governance = { path = "../astroport-governance" }
 voting-escrow = { path = "../../contracts/voting_escrow" }
 generator-controller = { path = "../../contracts/generator_controller" }
-astroport-generator = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-pair = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-factory = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-token = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-staking = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-whitelist = { git = "https://github.com/astroport-fi/astroport-core.git"}
+paloma-generator = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-pair = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-factory = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-token = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-staking = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-whitelist = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
 anyhow = "1"

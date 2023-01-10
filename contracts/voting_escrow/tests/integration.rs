@@ -172,9 +172,9 @@ fn random_token_lock() {
     let helper = Helper::init(router_ref, owner);
 
     let random_token_contract = Box::new(ContractWrapper::new_with_empty(
-        astroport_token::contract::execute,
-        astroport_token::contract::instantiate,
-        astroport_token::contract::query,
+        paloma_token::contract::execute,
+        paloma_token::contract::instantiate,
+        paloma_token::contract::query,
     ));
     let random_token_code_id = router.store_code(random_token_contract);
 

@@ -35,12 +35,12 @@ cosmwasm-schema = "1.1"
 [dev-dependencies]
 cw-multi-test = "0.15"
 astroport-tests = { path = "../../packages/astroport-tests" }
-astroport-generator = { git = "https://github.com/astroport-fi/astroport-core.git" }
-astroport-pair = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-factory = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-token = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-staking = { git = "https://github.com/astroport-fi/astroport-core.git"}
-astroport-whitelist = { git = "https://github.com/astroport-fi/astroport-core.git"}
+paloma-generator = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git" }
+paloma-pair = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-factory = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-token = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-staking = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
+paloma-whitelist = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
 cw20 = "0.15"
 voting-escrow = { path = "../voting_escrow" }
 anyhow = "1"

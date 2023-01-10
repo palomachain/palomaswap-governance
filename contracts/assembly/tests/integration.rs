@@ -1646,9 +1646,9 @@ fn instantiate_contracts(
 
 fn instantiate_astro_token(router: &mut App, owner: &Addr) -> Addr {
     let astro_token_contract = Box::new(ContractWrapper::new_with_empty(
-        astroport_token::contract::execute,
-        astroport_token::contract::instantiate,
-        astroport_token::contract::query,
+        paloma_token::contract::execute,
+        paloma_token::contract::instantiate,
+        paloma_token::contract::query,
     ));
 
     let astro_token_code_id = router.store_code(astro_token_contract);
@@ -1679,20 +1679,20 @@ fn instantiate_astro_token(router: &mut App, owner: &Addr) -> Addr {
 
 fn instantiate_xastro_token(router: &mut App, owner: &Addr, astro_token: &Addr) -> (Addr, Addr) {
     let xastro_contract = Box::new(ContractWrapper::new_with_empty(
-        astroport_xastro_token::contract::execute,
-        astroport_xastro_token::contract::instantiate,
-        astroport_xastro_token::contract::query,
+        paloma_xastro_token::contract::execute,
+        paloma_xastro_token::contract::instantiate,
+        paloma_xastro_token::contract::query,
     ));
 
     let xastro_code_id = router.store_code(xastro_contract);
 
     let staking_contract = Box::new(
         ContractWrapper::new_with_empty(
-            astroport_staking::contract::execute,
-            astroport_staking::contract::instantiate,
-            astroport_staking::contract::query,
+            paloma_staking::contract::execute,
+            paloma_staking::contract::instantiate,
+            paloma_staking::contract::query,
         )
-        .with_reply_empty(astroport_staking::contract::reply),
+        .with_reply_empty(paloma_staking::contract::reply),
     );
 
     let staking_code_id = router.store_code(staking_contract);
@@ -1709,7 +1709,7 @@ fn instantiate_xastro_token(router: &mut App, owner: &Addr, astro_token: &Addr) 
             owner.clone(),
             &msg,
             &[],
-            String::from("xASTRO"),
+            String::from("xGRAIN"),
             None,
         )
         .unwrap();
@@ -1748,7 +1748,7 @@ fn instantiate_vxastro_token(router: &mut App, owner: &Addr, xastro: &Addr) -> A
             owner.clone(),
             &msg,
             &[],
-            String::from("vxASTRO"),
+            String::from("vxGRAIN"),
             None,
         )
         .unwrap()

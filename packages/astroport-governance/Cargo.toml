@@ -17,5 +17,5 @@ backtraces = ["cosmwasm-std/backtraces"]
 cw20 = "0.15"
 cosmwasm-std = "1.1"
 cw-storage-plus = "0.15"
-astroport = { git = "https://github.com/astroport-fi/astroport-core.git"}
+paloma = { git = "ssh://git@github.com/palomachain/palomaswap-amm.git"}
 cosmwasm-schema = "1.1"

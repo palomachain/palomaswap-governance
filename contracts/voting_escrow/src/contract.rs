@@ -123,8 +123,8 @@ pub fn instantiate(
 
     // Store token info
     let data = TokenInfo {
-        name: "Vote Escrowed xASTRO".to_string(),
-        symbol: "vxASTRO".to_string(),
+        name: "Vote Escrowed xGRAIN".to_string(),
+        symbol: "vxGRAIN".to_string(),
         decimals: 6,
         total_supply: Uint128::zero(),
         mint: Some(MinterData {
