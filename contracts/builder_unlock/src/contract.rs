@@ -1,5 +1,5 @@
 use crate::astroport::common::{claim_ownership, drop_ownership_proposal, propose_new_owner};
-use astroport::asset::addr_validate_to_lower;
+use paloma::asset::addr_validate_to_lower;
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 

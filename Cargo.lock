@@ -26,9 +26,6 @@ dependencies = [
  "anyhow",
  "astroport-governance 1.1.0",
  "astroport-nft",
- "astroport-staking",
- "astroport-token",
- "astroport-xastro-token",
  "builder-unlock",
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -36,6 +33,9 @@ dependencies = [
  "cw-storage-plus",
  "cw2",
  "cw20",
+ "paloma-staking",
+ "paloma-token",
+ "paloma-xastro-token",
  "thiserror",
  "voting-escrow",
  "voting-escrow-delegation",
@@ -60,45 +60,13 @@ version = "1.0.0"
 dependencies = [
  "astroport-governance 1.1.0",
  "astroport-tests",
- "astroport-token",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
  "cw-storage-plus",
  "cw2",
  "cw20",
- "thiserror",
-]
-
-[[package]]
-name = "astroport-factory"
-version = "1.3.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw2",
- "itertools",
- "protobuf",
- "thiserror",
-]
-
-[[package]]
-name = "astroport-generator"
-version = "2.2.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "astroport-governance 1.1.0 (git+https://github.com/astroport-fi/astroport-governance.git?branch=main)",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw1-whitelist",
- "cw2",
- "cw20",
- "protobuf",
+ "paloma-token",
  "thiserror",
 ]
 
@@ -106,11 +74,11 @@ dependencies = [
 name = "astroport-governance"
 version = "1.1.0"
 dependencies = [
- "astroport",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-storage-plus",
  "cw20",
+ "paloma",
 ]
 
 [[package]]
@@ -138,99 +106,26 @@ dependencies = [
 ]
 
 [[package]]
-name = "astroport-pair"
-version = "1.0.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw2",
- "cw20",
- "integer-sqrt",
- "protobuf",
- "thiserror",
-]
-
-[[package]]
-name = "astroport-staking"
-version = "1.0.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw2",
- "cw20",
- "protobuf",
- "thiserror",
-]
-
-[[package]]
 name = "astroport-tests"
 version = "1.0.0"
 dependencies = [
  "anyhow",
- "astroport",
  "astroport-escrow-fee-distributor",
- "astroport-factory",
- "astroport-generator",
  "astroport-governance 1.1.0",
- "astroport-pair",
- "astroport-staking",
- "astroport-token",
- "astroport-whitelist",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
  "cw2",
  "cw20",
  "generator-controller",
+ "paloma",
+ "paloma-factory",
+ "paloma-generator",
+ "paloma-pair",
+ "paloma-staking",
+ "paloma-token",
+ "paloma-whitelist",
  "voting-escrow",
-]
-
-[[package]]
-name = "astroport-token"
-version = "1.0.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw2",
- "cw20",
- "cw20-base",
- "snafu",
-]
-
-[[package]]
-name = "astroport-whitelist"
-version = "1.0.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw1-whitelist",
- "cw2",
- "thiserror",
-]
-
-[[package]]
-name = "astroport-xastro-token"
-version = "1.0.0"
-source = "git+https://github.com/astroport-fi/astroport-core.git#e01d5ca6bffab88c0aa304283983237631bee75e"
-dependencies = [
- "astroport",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw2",
- "cw20",
- "cw20-base",
- "snafu",
 ]
 
 [[package]]
@@ -300,15 +195,15 @@ dependencies = [
 name = "builder-unlock"
 version = "1.2.1"
 dependencies = [
- "astroport",
  "astroport-governance 1.1.0",
- "astroport-token",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
  "cw-storage-plus",
  "cw2",
  "cw20",
+ "paloma",
+ "paloma-token",
  "thiserror",
 ]
 
@@ -751,14 +646,8 @@ name = "generator-controller"
 version = "1.1.0"
 dependencies = [
  "anyhow",
- "astroport-factory",
- "astroport-generator",
  "astroport-governance 1.1.0",
- "astroport-pair",
- "astroport-staking",
  "astroport-tests",
- "astroport-token",
- "astroport-whitelist",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
@@ -766,6 +655,12 @@ dependencies = [
  "cw2",
  "cw20",
  "itertools",
+ "paloma-factory",
+ "paloma-generator",
+ "paloma-pair",
+ "paloma-staking",
+ "paloma-token",
+ "paloma-whitelist",
  "proptest",
  "thiserror",
  "voting-escrow",
@@ -904,6 +799,124 @@ name = "opaque-debug"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
+
+[[package]]
+name = "paloma"
+version = "2.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw20",
+ "itertools",
+ "uint",
+]
+
+[[package]]
+name = "paloma-factory"
+version = "1.3.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw2",
+ "itertools",
+ "paloma",
+ "protobuf",
+ "thiserror",
+]
+
+[[package]]
+name = "paloma-generator"
+version = "2.2.1"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "astroport-governance 1.1.0 (git+https://github.com/astroport-fi/astroport-governance.git?branch=main)",
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw1-whitelist",
+ "cw2",
+ "cw20",
+ "paloma",
+ "protobuf",
+ "thiserror",
+]
+
+[[package]]
+name = "paloma-pair"
+version = "1.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw2",
+ "cw20",
+ "integer-sqrt",
+ "paloma",
+ "protobuf",
+ "thiserror",
+]
+
+[[package]]
+name = "paloma-staking"
+version = "1.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw2",
+ "cw20",
+ "paloma",
+ "protobuf",
+ "thiserror",
+]
+
+[[package]]
+name = "paloma-token"
+version = "1.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw2",
+ "cw20",
+ "cw20-base",
+ "paloma",
+ "snafu",
+]
+
+[[package]]
+name = "paloma-whitelist"
+version = "1.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw1-whitelist",
+ "cw2",
+ "paloma",
+ "thiserror",
+]
+
+[[package]]
+name = "paloma-xastro-token"
+version = "1.0.0"
+source = "git+ssh://git@github.com/palomachain/palomaswap-amm.git#c35d93e6a629dbcbbc950bb554cc789fd1fb288b"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw2",
+ "cw20",
+ "cw20-base",
+ "paloma",
+ "snafu",
+]
 
 [[package]]
 name = "pkcs8"
@@ -1355,8 +1368,6 @@ dependencies = [
  "anyhow",
  "astroport-escrow-fee-distributor",
  "astroport-governance 1.1.0",
- "astroport-staking",
- "astroport-token",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
@@ -1364,6 +1375,8 @@ dependencies = [
  "cw2",
  "cw20",
  "cw20-base",
+ "paloma-staking",
+ "paloma-token",
  "proptest",
  "thiserror",
 ]

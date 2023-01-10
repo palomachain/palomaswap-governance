@@ -1,4 +1,4 @@
-use astroport::token::InstantiateMsg as TokenInstantiateMsg;
+use paloma::token::InstantiateMsg as TokenInstantiateMsg;
 use astroport_governance::builder_unlock::{AllocationParams, Schedule};
 
 use astroport_governance::builder_unlock::msg::{
@@ -18,9 +18,9 @@ fn mock_app() -> App {
 fn init_contracts(app: &mut App) -> (Addr, Addr, InstantiateMsg) {
     // Instantiate ASTRO token contract
     let astro_token_contract = Box::new(ContractWrapper::new(
-        astroport_token::contract::execute,
-        astroport_token::contract::instantiate,
-        astroport_token::contract::query,
+        paloma_token::contract::execute,
+        paloma_token::contract::instantiate,
+        paloma_token::contract::query,
     ));
 
     let astro_token_code_id = app.store_code(astro_token_contract);
@@ -282,9 +282,9 @@ fn test_create_allocations() {
     // ######    ERROR :: Only ASTRO can be can be deposited     ######
     // Instantiate the ASTRO token contract
     let not_astro_token_contract = Box::new(ContractWrapper::new(
-        astroport_token::contract::execute,
-        astroport_token::contract::instantiate,
-        astroport_token::contract::query,
+        paloma_token::contract::execute,
+        paloma_token::contract::instantiate,
+        paloma_token::contract::query,
     ));
 
     let not_astro_token_code_id = app.store_code(not_astro_token_contract);

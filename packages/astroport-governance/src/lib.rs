@@ -7,7 +7,7 @@ pub mod utils;
 pub mod voting_escrow;
 pub mod voting_escrow_delegation;
 
-pub use astroport;
+pub use paloma as astroport;
 
 // Default pagination constants
 pub const DEFAULT_LIMIT: u32 = 10;

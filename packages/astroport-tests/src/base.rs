@@ -1,7 +1,7 @@
 use cosmwasm_schema::cw_serde;
 
-use astroport::staking;
-use astroport::token::InstantiateMsg as AstroTokenInstantiateMsg;
+use paloma::staking;
+use paloma::token::InstantiateMsg as AstroTokenInstantiateMsg;
 use astroport_governance::escrow_fee_distributor::InstantiateMsg as EscrowFeeDistributorInstantiateMsg;
 use astroport_governance::voting_escrow::{
     Cw20HookMsg, ExecuteMsg, InstantiateMsg as AstroVotingEscrowInstantiateMsg, QueryMsg,
@@ -54,16 +54,16 @@ impl BaseAstroportTestPackage {
 
     fn init_astro_token(&mut self, router: &mut App, owner: Addr) {
         let astro_token_contract = Box::new(ContractWrapper::new_with_empty(
-            astroport_token::contract::execute,
-            astroport_token::contract::instantiate,
-            astroport_token::contract::query,
+            paloma_token::contract::execute,
+            paloma_token::contract::instantiate,
+            paloma_token::contract::query,
         ));
 
         let astro_token_code_id = router.store_code(astro_token_contract);
 
         let init_msg = AstroTokenInstantiateMsg {
             name: String::from("Astro token"),
-            symbol: String::from("ASTRO"),
+            symbol: String::from("GRAIN"),
             decimals: 6,
             initial_balances: vec![],
             mint: Some(MinterResponse {
@@ -93,11 +93,11 @@ impl BaseAstroportTestPackage {
     fn init_staking(&mut self, router: &mut App, owner: Addr) {
         let staking_contract = Box::new(
             ContractWrapper::new_with_empty(
-                astroport_staking::contract::execute,
-                astroport_staking::contract::instantiate,
-                astroport_staking::contract::query,
+                paloma_staking::contract::execute,
+                paloma_staking::contract::instantiate,
+                paloma_staking::contract::query,
             )
-            .with_reply_empty(astroport_staking::contract::reply),
+            .with_reply_empty(paloma_staking::contract::reply),
         );
 
         let staking_code_id = router.store_code(staking_contract);
@@ -115,7 +115,7 @@ impl BaseAstroportTestPackage {
                 owner,
                 &msg,
                 &[],
-                String::from("xASTRO"),
+                String::from("xGRAIN"),
                 None,
             )
             .unwrap();
@@ -161,7 +161,7 @@ impl BaseAstroportTestPackage {
                 owner,
                 &msg,
                 &[],
-                String::from("vxASTRO"),
+                String::from("vxGRAIN"),
                 None,
             )
             .unwrap();

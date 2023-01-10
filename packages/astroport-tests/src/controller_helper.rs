@@ -1,7 +1,7 @@
 use crate::escrow_helper::EscrowHelper;
 use anyhow::Result as AnyResult;
-use astroport::asset::{AssetInfo, PairInfo};
-use astroport::factory::{PairConfig, PairType};
+use paloma::asset::{AssetInfo, PairInfo};
+use paloma::factory::{PairConfig, PairType};
 use astroport_governance::generator_controller::{ConfigResponse, ExecuteMsg, QueryMsg};
 use cosmwasm_std::{Addr, Decimal, StdResult};
 use cw_multi_test::{App, AppResponse, ContractWrapper, Executor};
@@ -21,29 +21,29 @@ impl ControllerHelper {
 
         let pair_contract = Box::new(
             ContractWrapper::new_with_empty(
-                astroport_pair::contract::execute,
-                astroport_pair::contract::instantiate,
-                astroport_pair::contract::query,
+                paloma_pair::contract::execute,
+                paloma_pair::contract::instantiate,
+                paloma_pair::contract::query,
             )
-            .with_reply_empty(astroport_pair::contract::reply),
+            .with_reply_empty(paloma_pair::contract::reply),
         );
 
         let pair_code_id = router.store_code(pair_contract);
 
         let factory_contract = Box::new(
             ContractWrapper::new_with_empty(
-                astroport_factory::contract::execute,
-                astroport_factory::contract::instantiate,
-                astroport_factory::contract::query,
+                paloma_factory::contract::execute,
+                paloma_factory::contract::instantiate,
+                paloma_factory::contract::query,
             )
-            .with_reply_empty(astroport_factory::contract::reply),
+            .with_reply_empty(paloma_factory::contract::reply),
         );
 
         let factory_code_id = router.store_code(factory_contract);
 
         let whitelist_code_id = store_whitelist_code(router);
 
-        let msg = astroport::factory::InstantiateMsg {
+        let msg = paloma::factory::InstantiateMsg {
             pair_configs: vec![PairConfig {
                 code_id: pair_code_id,
                 pair_type: PairType::Xyk {},
@@ -65,15 +65,15 @@ impl ControllerHelper {
 
         let generator_contract = Box::new(
             ContractWrapper::new_with_empty(
-                astroport_generator::contract::execute,
-                astroport_generator::contract::instantiate,
-                astroport_generator::contract::query,
+                paloma_generator::contract::execute,
+                paloma_generator::contract::instantiate,
+                paloma_generator::contract::query,
             )
-            .with_reply_empty(astroport_generator::contract::reply),
+            .with_reply_empty(paloma_generator::contract::reply),
         );
 
         let generator_code_id = router.store_code(generator_contract);
-        let init_msg = astroport::generator::InstantiateMsg {
+        let init_msg = paloma::generator::InstantiateMsg {
             owner: owner.to_string(),
             factory: factory.to_string(),
             generator_controller: None,
@@ -129,7 +129,7 @@ impl ControllerHelper {
             .execute_contract(
                 owner.clone(),
                 generator.clone(),
-                &astroport::generator::ExecuteMsg::UpdateConfig {
+                &paloma::generator::ExecuteMsg::UpdateConfig {
                     vesting_contract: None,
                     generator_controller: Some(controller.to_string()),
                     guardian: None,
@@ -151,7 +151,7 @@ impl ControllerHelper {
     }
 
     pub fn init_cw20_token(&self, router: &mut App, name: &str) -> AnyResult<Addr> {
-        let msg = astroport::token::InstantiateMsg {
+        let msg = paloma::token::InstantiateMsg {
             name: name.to_string(),
             symbol: name.to_string(),
             decimals: 6,
@@ -183,7 +183,7 @@ impl ControllerHelper {
         router.execute_contract(
             Addr::unchecked(self.owner.clone()),
             self.factory.clone(),
-            &astroport::factory::ExecuteMsg::CreatePair {
+            &paloma::factory::ExecuteMsg::CreatePair {
                 pair_type: PairType::Xyk {},
                 asset_infos: asset_infos.clone(),
                 init_params: None,
@@ -193,7 +193,7 @@ impl ControllerHelper {
 
         let res: PairInfo = router.wrap().query_wasm_smart(
             self.factory.clone(),
-            &astroport::factory::QueryMsg::Pair { asset_infos },
+            &paloma::factory::QueryMsg::Pair { asset_infos },
         )?;
 
         Ok(res.liquidity_token)
@@ -333,9 +333,9 @@ impl ControllerHelper {
 
 fn store_whitelist_code(app: &mut App) -> u64 {
     let whitelist_contract = Box::new(ContractWrapper::new_with_empty(
-        astroport_whitelist::contract::execute,
-        astroport_whitelist::contract::instantiate,
-        astroport_whitelist::contract::query,
+        paloma_whitelist::contract::execute,
+        paloma_whitelist::contract::instantiate,
+        paloma_whitelist::contract::query,
     ));
 
     app.store_code(whitelist_contract)
